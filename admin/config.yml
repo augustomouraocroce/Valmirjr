@@ -31,7 +31,7 @@ collections:
             label_singular: obra
             widget: list
             add_to_top: true
-            summary: "{{fields.titulo}} — {{fields.status}}"
+            summary: "{{fields.titulo}}"
             fields:
               - { name: titulo, label: Título, widget: string }
               - { name: imagem, label: Foto principal, widget: image, hint: "Foto de frente, com boa luz. JPG até ~1 MB é o ideal." }
