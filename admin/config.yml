@@ -1,0 +1,74 @@
+# Painel privado do Valmir Jr — acessível em /admin (somente usuários convidados no Netlify Identity)
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: "Nova obra: {{slug}}"
+    update: "Atualiza {{collection}}: {{slug}}"
+    uploadMedia: "Upload: {{path}}"
+
+locale: pt
+site_url: /
+display_url: /
+logo_url: /images/site/favicon.svg
+
+media_folder: images/obras
+public_folder: /images/obras
+
+collections:
+  - name: obras
+    label: Obras
+    description: "Adicione, edite ou remova obras. A primeira da lista aparece primeiro no site — arraste para reordenar."
+    editor: { preview: false }
+    files:
+      - name: lista
+        label: Obras à venda
+        file: data/obras.json
+        format: json
+        fields:
+          - name: obras
+            label: Obras
+            label_singular: obra
+            widget: list
+            add_to_top: true
+            summary: "{{fields.titulo}} — {{fields.status}}"
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: imagem, label: Foto principal, widget: image, hint: "Foto de frente, com boa luz. JPG até ~1 MB é o ideal." }
+              - name: imagens_extras
+                label: Fotos extras (detalhes, ambiente, verso)
+                widget: list
+                required: false
+                field: { name: imagem, label: Foto, widget: image }
+              - { name: preco, label: "Preço (R$)", widget: number, value_type: int, min: 0, required: false, hint: "Deixe vazio para mostrar 'Sob consulta'." }
+              - name: status
+                label: Situação
+                widget: select
+                default: disponivel
+                options:
+                  - { label: Disponível, value: disponivel }
+                  - { label: Reservada, value: reservada }
+                  - { label: Vendida, value: vendida }
+              - { name: tecnica, label: Técnica, widget: string, required: false, hint: "Ex.: Acrílica sobre tela" }
+              - { name: dimensoes, label: Dimensões, widget: string, required: false, hint: "Ex.: 60 × 80 cm" }
+              - { name: ano, label: Ano, widget: string, required: false }
+              - { name: descricao, label: Descrição, widget: text, required: false }
+              - { name: oculta, label: Esconder do site, widget: boolean, default: false, required: false }
+
+  - name: config
+    label: Informações do site
+    editor: { preview: false }
+    files:
+      - name: site
+        label: Bio, WhatsApp e contato
+        file: data/site.json
+        format: json
+        fields:
+          - { name: nome, label: Nome, widget: string }
+          - { name: subtitulo, label: Subtítulo, widget: string, required: false }
+          - { name: whatsapp, label: WhatsApp, widget: string, pattern: ['^\d{12,13}$', "Só números, com 55 + DDD. Ex.: 5531999999999"] }
+          - { name: instagram, label: "Instagram (sem @)", widget: string, required: false }
+          - { name: email, label: E-mail, widget: string, required: false }
+          - { name: foto, label: Foto do artista, widget: image, media_folder: /images/site, public_folder: /images/site, required: false }
+          - { name: bio, label: Mini bio, widget: text, hint: "Separe parágrafos com uma linha em branco." }
+          - { name: aviso_envio, label: Aviso sobre envio, widget: string, required: false }
