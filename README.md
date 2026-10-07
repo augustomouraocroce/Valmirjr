@@ -23,12 +23,13 @@ Site estático (HTML/CSS/JS puro, sem build), pensado primeiro para celular, com
 ## Publicar no Netlify
 
 1. No Netlify: **Add new site → Import from Git** e escolha este repositório. Não precisa de comando de build; o diretório publicado é `.`.
-2. **Branch**: em `admin/config.yml`, `backend.branch` precisa ser a mesma branch que o Netlify publica (hoje está `main`).
+2. **Branch**: o site é publicado a partir da `main`. Em *Site configuration → Build & deploy → Branches*, a *Production branch* deve ser `main`, a mesma de `backend.branch` em `admin/config.yml`.
 3. **Painel privado**: em *Site configuration → Identity*, clique em **Enable Identity**. Depois:
    - *Registration preferences* → **Invite only** (ninguém consegue se cadastrar sozinho);
    - *Services → Git Gateway* → **Enable**;
    - *Identity → Invite users* → convide o e-mail do Valmir. Ele recebe o convite, define uma senha e entra em `seusite.com/admin`.
-4. **Domínio**: *Domain management → Add a domain* com a URL de vocês.
+4. **Domínio** (`borocoshop.com`, registrado na GoDaddy): ele usa o **Netlify DNS**. Na GoDaddy, em *DNS → Servidores de nomes*, ficam os 4 servidores `dns1…dns4.p04.nsone.net`.
+5. **HTTPS**: em *Domain management → HTTPS*, clique em **Verify DNS configuration** e depois em **Provision certificate**. Ligue o **Force HTTPS**.
 
 ## Antes de publicar
 
