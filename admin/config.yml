@@ -53,6 +53,7 @@ collections:
                   - { label: Vendida, value: vendida }
               - { name: tecnica, label: Técnica, widget: string, required: false, hint: "Ex.: Acrílica sobre tela" }
               - { name: dimensoes, label: Dimensões, widget: string, required: false, hint: "Ex.: 60 × 80 cm" }
+              - { name: moldura, label: Moldura, widget: string, required: false, hint: "Ex.: Sem moldura, tela pronta para pendurar · Moldura de madeira natural. Deixe vazio para não mostrar." }
               - { name: ano, label: Ano, widget: string, required: false }
               - { name: descricao, label: Descrição, widget: text, required: false }
               - { name: oculta, label: Esconder do site, widget: boolean, default: false, required: false }
@@ -74,3 +75,10 @@ collections:
           - { name: foto, label: Foto do artista, widget: image, media_folder: /images/site, public_folder: /images/site, required: false }
           - { name: bio, label: Mini bio, widget: text, hint: "Separe parágrafos com uma linha em branco." }
           - { name: aviso_envio, label: Aviso sobre envio, widget: string, required: false }
+          - name: como_comprar
+            label: Como funciona a compra
+            label_singular: linha
+            widget: list
+            required: false
+            hint: "Aparece junto ao botão de cada obra. Frases curtas e verdadeiras, uma por linha."
+            field: { name: texto, label: Texto, widget: string }
