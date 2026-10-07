@@ -111,8 +111,13 @@ body.travado { overflow: hidden; }
 .vazio p { margin: 0; }
 .vazio .botao { margin-top: 20px; }
 .botao:disabled { opacity: .55; cursor: progress; }
-.card.esqueleto .card-img { background: #e9e5de; animation: pulsa 1.4s ease-in-out infinite alternate; }
-@keyframes pulsa { to { background: #f0ece6; } }
+.card.esqueleto .card-img { position: relative; background: #e9e5de; }
+.card.esqueleto .card-img::after {
+  content: ""; position: absolute; inset: 0;
+  background: #f0ece6; opacity: 0;
+  animation: pulsa 1.4s ease-in-out infinite alternate;
+}
+@keyframes pulsa { to { opacity: 1; } }
 .card.sem-foto .card-img { background: #e9e5de; }
 .card.sem-foto .card-img img { visibility: hidden; }
 .card-nome, .detalhe-titulo { overflow-wrap: anywhere; }
@@ -181,7 +186,7 @@ body.travado { overflow: hidden; }
   .botao-wpp:hover { background: var(--wpp); border-color: var(--wpp); }
   .botao-linha:hover { background: var(--tinta); color: var(--fundo); }
 }
-.botao { transition: background-color .2s, border-color .2s, color .2s, transform .15s cubic-bezier(.2, .8, .2, 1); }
+.botao { transition: background-color .2s, border-color .2s, color .2s, transform 150ms var(--ease-saida); }
 .botao:active { transform: scale(.98); }
 .botao:focus-visible { outline: 2px solid var(--tinta); outline-offset: 3px; }
 
@@ -207,11 +212,12 @@ body.travado { overflow: hidden; }
 .detalhe[open] { opacity: 1; translate: none; transition-duration: 280ms; }
 @starting-style { .detalhe[open] { opacity: 0; translate: 0 24px; } }
 .detalhe::backdrop {
-  background: rgba(20, 20, 20, 0);
-  transition: background-color 200ms var(--ease-saida), overlay 200ms allow-discrete, display 200ms allow-discrete;
+  background: rgba(20, 20, 20, .55);
+  opacity: 0;
+  transition: opacity 200ms var(--ease-saida), overlay 200ms allow-discrete, display 200ms allow-discrete;
 }
-.detalhe[open]::backdrop { background: rgba(20, 20, 20, .55); transition-duration: 280ms; }
-@starting-style { .detalhe[open]::backdrop { background: rgba(20, 20, 20, 0); } }
+.detalhe[open]::backdrop { opacity: 1; transition-duration: 280ms; }
+@starting-style { .detalhe[open]::backdrop { opacity: 0; } }
 .fechar {
   position: fixed; z-index: 2; right: 10px; top: calc(10px + env(safe-area-inset-top));
   width: 44px; height: 44px; display: grid; place-items: center;

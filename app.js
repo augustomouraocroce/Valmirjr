@@ -232,6 +232,7 @@
     });
     $$('.seta').forEach(function (s) { s.hidden = imagens.length < 2; });
     galeria.scrollLeft = 0;
+    alvoImagem = null;
     atualizarPontos();
 
     var st = STATUS[o.status] || STATUS.disponivel;
@@ -289,16 +290,25 @@
     $('.seta-prox').disabled = i >= total - 1;
   }
 
+  var alvoImagem = null;   // foto para onde a galeria está indo (enquanto rola)
+  var fimRolagem = 0;
+
   function imagemAtual() {
     var galeria = $('#galeria');
     return Math.round(galeria.scrollLeft / (galeria.clientWidth || 1));
   }
 
-  function irParaImagem(i) {
+  // Base para o próximo clique: o destino em andamento, se houver; senão a posição real.
+  function imagemBase() {
+    return alvoImagem == null ? imagemAtual() : alvoImagem;
+  }
+
+  function irParaImagem(i, instantaneo) {
     var galeria = $('#galeria');
     var total = galeria.children.length;
     i = Math.max(0, Math.min(total - 1, i));
-    var suave = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    alvoImagem = i;
+    var suave = !instantaneo && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     galeria.scrollTo({ left: i * galeria.clientWidth, behavior: suave ? 'smooth' : 'auto' });
   }
 
@@ -321,15 +331,19 @@
   $('[data-fechar]').addEventListener('click', sairDaObra);
   dialogo.addEventListener('cancel', function (e) { e.preventDefault(); sairDaObra(); });
   dialogo.addEventListener('click', function (e) { if (e.target === dialogo) sairDaObra(); });
-  $('#galeria').addEventListener('scroll', function () { window.requestAnimationFrame(atualizarPontos); }, { passive: true });
+  $('#galeria').addEventListener('scroll', function () {
+    window.requestAnimationFrame(atualizarPontos);
+    clearTimeout(fimRolagem);
+    fimRolagem = setTimeout(function () { alvoImagem = null; }, 120);
+  }, { passive: true });
   $$('.seta').forEach(function (s) {
-    s.addEventListener('click', function () { irParaImagem(imagemAtual() + Number(s.dataset.seta)); });
+    s.addEventListener('click', function () { irParaImagem(imagemBase() + Number(s.dataset.seta)); });
   });
   dialogo.addEventListener('keydown', function (e) {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
     if ($('#galeria').children.length < 2) return;
     e.preventDefault();
-    irParaImagem(imagemAtual() + (e.key === 'ArrowRight' ? 1 : -1));
+    irParaImagem(imagemBase() + (e.key === 'ArrowRight' ? 1 : -1), true);
   });
   window.addEventListener('hashchange', lerRota);
   window.addEventListener('popstate', lerRota);
