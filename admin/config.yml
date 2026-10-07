@@ -12,7 +12,7 @@ backend:
 locale: pt
 site_url: /
 display_url: /
-logo_url: /images/site/favicon.svg
+logo_url: /images/site/icon-512.png
 
 media_folder: images/obras
 public_folder: /images/obras
