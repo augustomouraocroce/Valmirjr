@@ -7,7 +7,7 @@ Site estático (HTML/CSS/JS puro, sem build), pensado primeiro para celular, com
 - **Botão "Quero esta obra"**: abre o WhatsApp do artista com uma mensagem pronta (título, técnica, medidas, preço, link da foto e link da obra).
   Obras vendidas mostram "Encomendar algo parecido", e as reservadas mostram "Entrar na fila".
 - **Mini bio** e **contato**.
-- **Painel privado em `/admin`** para o Valmir cadastrar obras, subir fotos, mudar preço/status e editar a bio e o WhatsApp. O painel não tem link no site, fica fora do Google (noindex) e só abre para quem foi convidado.
+- **Painel privado em `/admin`** para o Valmir cadastrar obras, subir fotos, mudar preço/status e editar a bio e o WhatsApp. O painel não tem link no site, fica fora do Google (noindex) e só abre para quem é colaborador do repositório no GitHub.
 
 ## Estrutura
 
@@ -24,10 +24,10 @@ Site estático (HTML/CSS/JS puro, sem build), pensado primeiro para celular, com
 
 1. No Netlify: **Add new site → Import from Git** e escolha este repositório. Não precisa de comando de build; o diretório publicado é `.`.
 2. **Branch**: o site é publicado a partir da `main`. Em *Site configuration → Build & deploy → Branches*, a *Production branch* deve ser `main`, a mesma de `backend.branch` em `admin/config.yml`.
-3. **Painel privado**: em *Site configuration → Identity*, clique em **Enable Identity**. Depois:
-   - *Registration preferences* → **Invite only** (ninguém consegue se cadastrar sozinho);
-   - *Services → Git Gateway* → **Enable**;
-   - *Identity → Invite users* → convide o e-mail do Valmir. Ele recebe o convite, define uma senha e entra em `seusite.com/admin`.
+3. **Painel privado** (login com GitHub; o Netlify Identity foi descontinuado):
+   - No GitHub, em *Settings → Developer settings → OAuth Apps → New OAuth App*, preencha *Homepage URL* `https://borocoshop.com` e *Authorization callback URL* `https://api.netlify.com/auth/done`. Depois gere um *Client secret*.
+   - No Netlify, em *Project configuration → Access & security → OAuth → Install a provider*, escolha **GitHub** e cole o *Client ID* e o *Client secret*.
+   - Quem for usar o painel precisa de uma conta no GitHub e ser **colaborador** do repositório (*Settings → Collaborators → Add people*).
 4. **Domínio** (`borocoshop.com`, registrado na GoDaddy): ele usa o **Netlify DNS**. Na GoDaddy, em *DNS → Servidores de nomes*, ficam os 4 servidores `dns1…dns4.p04.nsone.net`.
 5. **HTTPS**: em *Domain management → HTTPS*, clique em **Verify DNS configuration** e depois em **Provision certificate**. Ligue o **Force HTTPS**.
 

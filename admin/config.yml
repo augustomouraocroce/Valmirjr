@@ -1,6 +1,8 @@
-# Painel privado do Valmir Jr — acessível em /admin (somente usuários convidados no Netlify Identity)
+# Painel privado do Valmir Jr — acessível em /admin.
+# Login com GitHub (OAuth via Netlify): só entra quem é colaborador do repositório.
 backend:
-  name: git-gateway
+  name: github
+  repo: augustomouraocroce/Valmirjr
   branch: main
   commit_messages:
     create: "Nova obra: {{slug}}"
