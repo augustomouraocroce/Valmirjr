@@ -33,7 +33,7 @@ Site estático (HTML/CSS/JS puro, sem build), pensado primeiro para celular, com
 
 ## Antes de publicar
 
-- Troque o número de exemplo `5531999999999` pelo WhatsApp real (em `data/site.json` ou pelo painel). Use só números: 55 + DDD + número.
+- WhatsApp configurado: `5531975180693`. Para trocar, use o painel ou edite `data/site.json` (só números: 55 + DDD + número).
 - Troque as obras de exemplo e a foto do artista pelas fotos reais. Isso pode ser feito pelo painel.
 
 ## Como o Valmir adiciona uma obra
