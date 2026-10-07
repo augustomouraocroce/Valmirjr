@@ -81,6 +81,12 @@ body.travado { overflow: hidden; }
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 12px;
 }
 .card { cursor: pointer; }
+/* Cards entram juntos (legenda e imagem). Escalonamento de 40 ms só na primeira carga (--i vem do JS). */
+.card:not(.esqueleto) {
+  transition: opacity 220ms var(--ease-saida);
+  transition-delay: calc(min(var(--i, 0), 6) * 40ms);
+}
+@starting-style { .card:not(.esqueleto) { opacity: 0; } }
 .card button { all: unset; display: block; width: 100%; cursor: pointer; }
 .card button:focus-visible { outline: 2px solid var(--tinta); outline-offset: 4px; }
 /* Cada obra aparece inteira, na proporção real, apoiada numa linha comum
@@ -91,7 +97,7 @@ body.travado { overflow: hidden; }
 }
 .card-img img {
   width: auto; height: auto; max-width: 100%; max-height: 100%;
-  opacity: 0; transition: opacity .5s cubic-bezier(.2, .8, .2, 1);
+  opacity: 0; transition: opacity 300ms var(--ease-saida);
 }
 .card-img img.carregou { opacity: 1; }
 .card-nome { margin: 14px 0 2px; font: 400 19px/1.15 var(--serif); }
@@ -192,9 +198,20 @@ body.travado { overflow: hidden; }
   width: 100%; max-width: 100%; height: 100%; height: 100dvh; max-height: 100%; max-height: 100dvh;
   background: var(--fundo); color: var(--tinta);
 }
-.detalhe::backdrop { background: rgba(20, 20, 20, .55); }
-.detalhe[open] { animation: sobe .28s ease-out; }
-@keyframes sobe { from { transform: translateY(24px); opacity: 0; } }
+/* Abre subindo (280 ms) e sai pelo mesmo caminho, um pouco mais rápido (200 ms). */
+.detalhe {
+  opacity: 0; translate: 0 16px;
+  transition: opacity 200ms var(--ease-saida), translate 200ms var(--ease-saida),
+    overlay 200ms allow-discrete, display 200ms allow-discrete;
+}
+.detalhe[open] { opacity: 1; translate: none; transition-duration: 280ms; }
+@starting-style { .detalhe[open] { opacity: 0; translate: 0 24px; } }
+.detalhe::backdrop {
+  background: rgba(20, 20, 20, 0);
+  transition: background-color 200ms var(--ease-saida), overlay 200ms allow-discrete, display 200ms allow-discrete;
+}
+.detalhe[open]::backdrop { background: rgba(20, 20, 20, .55); transition-duration: 280ms; }
+@starting-style { .detalhe[open]::backdrop { background: rgba(20, 20, 20, 0); } }
 .fechar {
   position: fixed; z-index: 2; right: 10px; top: calc(10px + env(safe-area-inset-top));
   width: 44px; height: 44px; display: grid; place-items: center;
@@ -211,7 +228,9 @@ body.travado { overflow: hidden; }
 .galeria img {
   flex: 0 0 100%; width: 100%; scroll-snap-align: center;
   max-height: 64vh; max-height: 64svh; object-fit: contain; background: #e9e5de;
+  opacity: 0; transition: opacity 300ms var(--ease-saida);
 }
+.galeria img.carregou { opacity: 1; }
 .pontos { display: flex; justify-content: center; gap: 6px; padding: 12px 0 0; min-height: 18px; }
 .pontos button {
   all: unset; position: relative; width: 6px; height: 6px; border-radius: 50%;
@@ -323,5 +342,9 @@ body.travado { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
+  /* Sem movimento, mas os fades curtos ficam: imagens surgindo de repente incomodam mais. */
+  *, *::before, *::after { animation: none !important; }
+  .botao:active { transform: none; }
+  .detalhe, .detalhe[open] { translate: none !important; transition-duration: 150ms !important; }
+  .card:not(.esqueleto), .card-img img, .galeria img { transition-duration: 150ms !important; transition-delay: 0s !important; }
 }

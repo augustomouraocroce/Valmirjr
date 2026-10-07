@@ -16,6 +16,7 @@
   var site = {};
   var obras = [];
   var filtroAtual = 'todas';
+  var primeiraCarga = true; // escalona a entrada dos cards só na primeira vez
   var entrouPelaGrade = false; // a obra foi aberta por um clique aqui (há uma entrada no histórico para voltar)
 
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -132,6 +133,7 @@
       var st = STATUS[o.status] || STATUS.disponivel;
       var li = document.createElement('li');
       li.className = 'card' + (o.status === 'vendida' ? ' vendida' : '');
+      if (primeiraCarga) li.style.setProperty('--i', i);
       li.innerHTML =
         '<button type="button">' +
           '<div class="card-img">' +
@@ -144,6 +146,7 @@
       img.addEventListener('error', function () { li.classList.add('sem-foto'); });
       img.addEventListener('load', function () { img.classList.add('carregou'); });
       img.src = o.imagem;
+      if (img.complete && img.naturalWidth) img.classList.add('carregou'); // em cache: o card já faz o fade
       img.alt = o.titulo + (o.tecnica ? ' — ' + o.tecnica : '');
       $('.card-nome', li).textContent = o.titulo;
       $('.card-preco', li).textContent = o.status === 'vendida' ? 'Vendida' : preco(o.preco) + (o.status === 'reservada' ? ' · ' + st.rotulo : '');
@@ -154,6 +157,7 @@
       grade.appendChild(li);
     });
 
+    primeiraCarga = false;
     var vazio = $('#vazio');
     vazio.hidden = lista.length > 0;
     $('#tentar').hidden = true;
@@ -212,7 +216,9 @@
     pontos.innerHTML = '';
     imagens.forEach(function (src, i) {
       var img = document.createElement('img');
+      img.addEventListener('load', function () { img.classList.add('carregou'); });
       img.src = src;
+      if (img.complete && img.naturalWidth) img.classList.add('carregou');
       img.alt = o.titulo + (imagens.length > 1 ? ' — imagem ' + (i + 1) + ' de ' + imagens.length : '');
       if (i > 0) img.loading = 'lazy';
       galeria.appendChild(img);
