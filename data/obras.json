@@ -1,15 +1,11 @@
 {
   "obras": [
     {
-      "status": "disponivel",
-      "oculta": false
-    },
-    {
       "ano": "2026",
       "imagens_extras": [
         "/images/obras/img_4585.jpeg"
       ],
-      "descricao": "Substitua esta obra pelo painel /admin.",
+      "descricao": "Série de Retratos",
       "tecnica": "Guache sobre papel 100% algodão ",
       "preco": 400,
       "imagem": "/images/obras/img_4591.jpeg",
