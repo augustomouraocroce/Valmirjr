@@ -41,14 +41,16 @@
     },
     {
       "ano": "2025",
-      "imagens_extras": [],
-      "descricao": "",
-      "tecnica": "Técnica mista",
-      "preco": 1200,
-      "imagem": "/images/obras/exemplo-4.svg",
+      "imagens_extras": [
+        "/images/obras/img_4412.jpeg"
+      ],
+      "descricao": "Série de retratos",
+      "tecnica": "Guache sobre papel 100% algodão ",
+      "preco": 200,
+      "imagem": "/images/obras/img_4411.jpeg",
       "status": "disponivel",
-      "titulo": "Obra exemplo IV",
-      "dimensoes": "40 × 50 cm"
+      "titulo": "James Baldwin",
+      "dimensoes": "14 × 23 cm"
     },
     {
       "ano": "2025",
