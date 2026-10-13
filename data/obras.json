@@ -1,10 +1,76 @@
 {
   "obras": [
-    { "titulo": "Obra exemplo I", "imagem": "/images/obras/exemplo-1.svg", "imagens_extras": [], "ano": "2026", "tecnica": "Acrílica sobre tela", "dimensoes": "60 × 80 cm", "preco": 1800, "status": "disponivel", "descricao": "Substitua esta obra pelo painel /admin." },
-    { "titulo": "Obra exemplo II", "imagem": "/images/obras/exemplo-2.svg", "imagens_extras": [], "ano": "2026", "tecnica": "Nanquim sobre papel", "dimensoes": "30 × 42 cm", "preco": 650, "status": "disponivel", "descricao": "" },
-    { "titulo": "Obra exemplo III", "imagem": "/images/obras/exemplo-3.svg", "imagens_extras": [], "ano": "2025", "tecnica": "Óleo sobre tela", "dimensoes": "50 × 70 cm", "preco": 2400, "status": "vendida", "descricao": "" },
-    { "titulo": "Obra exemplo IV", "imagem": "/images/obras/exemplo-4.svg", "imagens_extras": [], "ano": "2025", "tecnica": "Técnica mista", "dimensoes": "40 × 50 cm", "preco": 1200, "status": "disponivel", "descricao": "" },
-    { "titulo": "Obra exemplo V", "imagem": "/images/obras/exemplo-5.svg", "imagens_extras": [], "ano": "2025", "tecnica": "Acrílica sobre madeira", "dimensoes": "35 × 35 cm", "preco": 900, "status": "reservada", "descricao": "" },
-    { "titulo": "Obra exemplo VI", "imagem": "/images/obras/exemplo-6.svg", "imagens_extras": [], "ano": "2024", "tecnica": "Grafite sobre papel", "dimensoes": "21 × 29,7 cm", "preco": 450, "status": "disponivel", "descricao": "" }
+    {
+      "status": "disponivel",
+      "oculta": false
+    },
+    {
+      "ano": "2026",
+      "imagens_extras": [
+        "/images/obras/img_4585.jpeg"
+      ],
+      "descricao": "Substitua esta obra pelo painel /admin.",
+      "tecnica": "Guache sobre papel 100% algodão ",
+      "preco": 400,
+      "imagem": "/images/obras/img_4591.jpeg",
+      "status": "disponivel",
+      "titulo": "Fé meu levado",
+      "dimensoes": "20 × 29 cm"
+    },
+    {
+      "ano": "2026",
+      "imagens_extras": [],
+      "descricao": "",
+      "tecnica": "Nanquim sobre papel",
+      "preco": 650,
+      "imagem": "/images/obras/exemplo-2.svg",
+      "status": "disponivel",
+      "titulo": "Obra exemplo II",
+      "dimensoes": "30 × 42 cm"
+    },
+    {
+      "ano": "2025",
+      "imagens_extras": [],
+      "descricao": "",
+      "tecnica": "Óleo sobre tela",
+      "preco": 2400,
+      "imagem": "/images/obras/exemplo-3.svg",
+      "status": "vendida",
+      "titulo": "Obra exemplo III",
+      "dimensoes": "50 × 70 cm"
+    },
+    {
+      "ano": "2025",
+      "imagens_extras": [],
+      "descricao": "",
+      "tecnica": "Técnica mista",
+      "preco": 1200,
+      "imagem": "/images/obras/exemplo-4.svg",
+      "status": "disponivel",
+      "titulo": "Obra exemplo IV",
+      "dimensoes": "40 × 50 cm"
+    },
+    {
+      "ano": "2025",
+      "imagens_extras": [],
+      "descricao": "",
+      "tecnica": "Acrílica sobre madeira",
+      "preco": 900,
+      "imagem": "/images/obras/exemplo-5.svg",
+      "status": "reservada",
+      "titulo": "Obra exemplo V",
+      "dimensoes": "35 × 35 cm"
+    },
+    {
+      "ano": "2024",
+      "imagens_extras": [],
+      "descricao": "",
+      "tecnica": "Grafite sobre papel",
+      "preco": 450,
+      "imagem": "/images/obras/exemplo-6.svg",
+      "status": "disponivel",
+      "titulo": "Obra exemplo VI",
+      "dimensoes": "21 × 29,7 cm"
+    }
   ]
 }
