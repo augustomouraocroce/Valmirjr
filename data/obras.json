@@ -27,15 +27,17 @@
       "dimensoes": "24 × 27 cm"
     },
     {
-      "ano": "2025",
-      "imagens_extras": [],
+      "ano": "2026",
+      "imagens_extras": [
+        "/images/obras/img_4352.jpeg"
+      ],
       "descricao": "",
-      "tecnica": "Óleo sobre tela",
-      "preco": 2400,
-      "imagem": "/images/obras/exemplo-3.svg",
+      "tecnica": "Guache sobre papel 100% algodão ",
+      "preco": 1000,
+      "imagem": "/images/obras/img_4351.jpeg",
       "status": "vendida",
-      "titulo": "Obra exemplo III",
-      "dimensoes": "50 × 70 cm"
+      "titulo": "Eu os vi dançando ",
+      "dimensoes": "30× 40 cm"
     },
     {
       "ano": "2025",
