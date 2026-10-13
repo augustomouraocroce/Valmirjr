@@ -15,14 +15,16 @@
     },
     {
       "ano": "2026",
-      "imagens_extras": [],
-      "descricao": "",
-      "tecnica": "Nanquim sobre papel",
-      "preco": 650,
-      "imagem": "/images/obras/exemplo-2.svg",
+      "imagens_extras": [
+        "/images/obras/img_4531.jpeg"
+      ],
+      "descricao": "Série Retratos",
+      "tecnica": "Guache sobre papel 100% algodão ",
+      "preco": 500,
+      "imagem": "/images/obras/img_4532.jpeg",
       "status": "disponivel",
-      "titulo": "Obra exemplo II",
-      "dimensoes": "30 × 42 cm"
+      "titulo": "Anne Carson",
+      "dimensoes": "24 × 27 cm"
     },
     {
       "ano": "2025",
