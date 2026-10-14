@@ -67,14 +67,16 @@
     },
     {
       "ano": "2024",
-      "imagens_extras": [],
+      "imagens_extras": [
+        "/images/obras/img_4446.jpeg"
+      ],
       "descricao": "",
-      "tecnica": "Grafite sobre papel",
-      "preco": 450,
-      "imagem": "/images/obras/exemplo-6.svg",
+      "tecnica": "Guache sobre papel 100% algodão ",
+      "preco": 700,
+      "imagem": "/images/obras/img_4445.jpeg",
       "status": "disponivel",
-      "titulo": "Obra exemplo VI",
-      "dimensoes": "21 × 29,7 cm"
+      "titulo": "ausência em seus modos",
+      "dimensoes": "18 × 40,5 cm"
     }
   ]
 }
