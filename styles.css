@@ -124,13 +124,13 @@ body.travado { overflow: hidden; }
 .vazio a { color: var(--tinta); text-underline-offset: 3px; }
 .aviso { margin: 36px 0 0; font-size: 13px; color: var(--suave); max-width: 46ch; }
 
-/* Abertura: o mural dele, como ele pintou (tinta sobre o claro) */
+/* Abertura: foto do Valmir no ateliê */
 .abertura {
   display: grid;
   padding: 0 0 8px;
 }
 .abertura-arte {
-  display: block; width: 100%; aspect-ratio: 16 / 10; height: auto;
+  display: block; width: 100%; aspect-ratio: 3 / 2; height: auto; object-fit: cover; object-position: 55% 40%;
   animation: pincelada 1.3s var(--ease-saida) .1s both;
 }
 @keyframes pincelada { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -146,15 +146,14 @@ body.travado { overflow: hidden; }
   text-decoration-color: var(--vermelho);
 }
 
-/* Fecho: o mesmo traço invertido e espelhado, como um decalque de tatuagem */
+/* Fecho: foto do Valmir abrindo a parte escura */
 .fecho {
-  --t-preto: var(--fundo);
   background: var(--tinta); color: var(--fundo);
   padding-bottom: env(safe-area-inset-bottom);
   margin-top: 24px;
   overflow: hidden;
 }
-.fecho-arte { display: block; width: 100%; aspect-ratio: 16 / 7; height: auto; transform: scaleX(-1); }
+.fecho-arte { display: block; width: 100%; aspect-ratio: 3 / 2; height: auto; object-fit: cover; object-position: 55% 50%; }
 .fecho-grade { display: grid; gap: 40px; padding: 40px var(--gutter) 64px; }
 .fecho-foto { margin: 0; justify-self: center; width: min(78%, 420px); rotate: -2.5deg; }
 .fecho-foto img { width: 100%; height: auto; box-shadow: 0 2px 4px rgba(0,0,0,.35), 0 18px 40px -8px rgba(0,0,0,.6); }
@@ -335,7 +334,7 @@ body.travado { overflow: hidden; }
   .abertura-arte { grid-column: 2; grid-row: 1; aspect-ratio: 1; max-height: calc(100vh - var(--topo) - 220px); }
   .abertura-texto { grid-column: 1; grid-row: 1; padding: 0 48px 8px 0; }
   .abertura-lede { font-size: 19px; }
-  .fecho-arte { aspect-ratio: 21 / 5; }
+  .fecho-arte { aspect-ratio: 21 / 9; object-position: 55% 55%; }
   .fecho-grade {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 72px; align-items: start;
     padding: 72px var(--gutter) 96px;
