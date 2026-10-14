@@ -20,16 +20,18 @@ Site estático (HTML/CSS/JS puro, sem build), pensado primeiro para celular, com
 | `admin/` | Painel (Decap CMS) |
 | `netlify.toml` | Configuração do Netlify |
 
-## Publicar no Netlify
+## Hospedagem: Cloudflare Pages
 
-1. No Netlify: **Add new site → Import from Git** e escolha este repositório. Não precisa de comando de build; o diretório publicado é `.`.
-2. **Branch**: o site é publicado a partir da `main`. Em *Site configuration → Build & deploy → Branches*, a *Production branch* deve ser `main`, a mesma de `backend.branch` em `admin/config.yml`.
-3. **Painel privado** (login com GitHub; o Netlify Identity foi descontinuado):
-   - No GitHub, em *Settings → Developer settings → OAuth Apps → New OAuth App*, preencha *Homepage URL* `https://borocoshop.com` e *Authorization callback URL* `https://api.netlify.com/auth/done`. Depois gere um *Client secret*.
-   - No Netlify, em *Project configuration → Access & security → OAuth → Install a provider*, escolha **GitHub** e cole o *Client ID* e o *Client secret*.
-   - Quem for usar o painel precisa de uma conta no GitHub e ser **colaborador** do repositório (*Settings → Collaborators → Add people*).
-4. **Domínio** (`borocoshop.com`, registrado na GoDaddy): ele usa o **Netlify DNS**. Na GoDaddy, em *DNS → Servidores de nomes*, ficam os 4 servidores `dns1…dns4.p04.nsone.net`.
-5. **HTTPS**: em *Domain management → HTTPS*, clique em **Verify DNS configuration** e depois em **Provision certificate**. Ligue o **Force HTTPS**.
+O site é estático (sem build). O login do painel roda em `functions/api/` (Pages Functions).
+
+1. **Cloudflare → Workers & Pages → Create → Pages → Connect to Git**: repositório `augustomouraocroce/Valmirjr`, branch `main`, *Framework preset* **None**, *Build command* vazio, *Build output directory* `/`.
+2. **Settings → Variables and Secrets** do projeto: `GITHUB_CLIENT_ID` e `GITHUB_CLIENT_SECRET` (tipo *Secret*) do OAuth App "Painel Valmir Jr" no GitHub.
+3. No OAuth App do GitHub, a *Redirect URI* passa a ser `https://borocoshop.com/api/callback`.
+4. **Domínio**: adicione `borocoshop.com` ao Cloudflare (plano Free), troque os servidores de nomes na GoDaddy pelos 2 que o Cloudflare mostrar e, no projeto Pages, em *Custom domains*, adicione `borocoshop.com` e `www.borocoshop.com`.
+5. Cabeçalhos HTTP ficam em `_headers`.
+6. Quem usa o painel precisa ser **colaborador** do repositório no GitHub.
+
+As fotos das obras devem ter no máximo ~1600 px no lado maior (200–400 KB). Fotos direto do celular (3 MB) deixam o site lento.
 
 ## Antes de publicar
 

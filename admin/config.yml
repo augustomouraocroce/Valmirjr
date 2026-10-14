@@ -1,9 +1,11 @@
 # Painel privado do Valmir Jr — acessível em /admin.
-# Login com GitHub (OAuth via Netlify): só entra quem é colaborador do repositório.
+# Login com GitHub (OAuth via functions/api no Cloudflare Pages): só entra quem é colaborador do repositório.
 backend:
   name: github
   repo: augustomouraocroce/Valmirjr
   branch: main
+  base_url: https://borocoshop.com
+  auth_endpoint: api/auth
   commit_messages:
     create: "Nova obra: {{slug}}"
     update: "Atualiza {{collection}}: {{slug}}"
