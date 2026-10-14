@@ -53,15 +53,17 @@
       "dimensoes": "14 × 23 cm"
     },
     {
-      "ano": "2025",
-      "imagens_extras": [],
+      "ano": "2026",
+      "imagens_extras": [
+        "/images/obras/img_4364.jpeg"
+      ],
       "descricao": "",
-      "tecnica": "Acrílica sobre madeira",
-      "preco": 900,
-      "imagem": "/images/obras/exemplo-5.svg",
+      "tecnica": "Guache sobre papel 100% algodão ",
+      "preco": 600,
+      "imagem": "/images/obras/img_4366.jpeg",
       "status": "disponivel",
-      "titulo": "Obra exemplo V",
-      "dimensoes": "35 × 35 cm"
+      "titulo": "O Anjo Caído ",
+      "dimensoes": "24× 31 cm"
     },
     {
       "ano": "2024",
